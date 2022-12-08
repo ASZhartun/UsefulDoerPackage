@@ -2,6 +2,10 @@ import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ *  This class has method for zipping specific folder or file.
+ *  Use classes of standard library.
+ */
 public class ZipDoer {
     /**
      * <p>Demonstration: how it works.</p>
@@ -12,7 +16,7 @@ public class ZipDoer {
      * </ul>
      * <p>Use getZOS for getting stream with zip and use base `pack` method for zipping.</p>
      *
-     * @param args
+     * @param args - have nothing
      */
     public static void main(String[] args) {
         final String pathname = "E:\\projects\\javafx-core\\ZipZap\\files\\poiu";
@@ -47,7 +51,7 @@ public class ZipDoer {
      * @param sourceFolder file we want to zip
      * @param zos ZipOutputStream for base method in next usage.
      * @param prevPath path of parent directory
-     * @throws IOException
+     * @throws IOException trouble with file system
      */
     private static void pack(File sourceFolder, ZipOutputStream zos, String prevPath) throws IOException {
         String parentDir = "";
@@ -58,6 +62,7 @@ public class ZipDoer {
             packFile(sourceFolder, zos, parentDir);
         } else {
             final File[] files = sourceFolder.listFiles();
+            assert files != null;
             for (File next :
                     files) {
                 pack(next, zos, parentDir + sourceFolder.getName());
@@ -70,7 +75,7 @@ public class ZipDoer {
      * @param source source file
      * @param zos ZipOutputStream for base method in next usage.
      * @param prevPath path of parent directory
-     * @throws IOException
+     * @throws IOException trouble with file system
      */
     public static void packFile(File source, ZipOutputStream zos, String prevPath) throws IOException {
         String parentDir = "";
